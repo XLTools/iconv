@@ -23,14 +23,14 @@ option(BUILD_TESTS "Build tests" OFF)
 # -------------
 
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
-    set(INCLUDE_DIR "${CMAKE_SOURCE_DIR}/linux")
+    set(INCLUDE_DIR "${CMAKE_SOURCE_DIR}/platforms/linux")
 elseif(CMAKE_SYSTEM_NAME MATCHES "Darwin")
-    set(INCLUDE_DIR "${CMAKE_SOURCE_DIR}/darwin")
+    set(INCLUDE_DIR "${CMAKE_SOURCE_DIR}/platforms/darwin")
 elseif(CMAKE_SYSTEM_NAME MATCHES "Windows")
     if(MSVC)
-        # TODO
+    elseif(MSYS)
     else()
-        # TODO
+        set(INCLUDE_DIR "${CMAKE_SOURCE_DIR}/platforms/mingw")
     endif()
 else()
     message(FATAL_ERROR "Unrecognized configuration, please download IConv from GNU at https://www.gnu.org/software/libiconv, run ./configure and send libs/config.h to ahuszagh(at)gmail(.)com")

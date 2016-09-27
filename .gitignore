@@ -42,7 +42,8 @@ _ReSharper*/
 *.sass-cache
 
 #Project files
-[Bb]uild/
+!build/.gitkeep
+[bB]uild/*
 
 #Subversion files
 .svn
