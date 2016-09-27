@@ -23,14 +23,14 @@ option(BUILD_TESTS "Build tests" OFF)
 # -------------
 
 if(CMAKE_SYSTEM_NAME MATCHES "Linux")
-    set(INCLUDE_DIR "${CMAKE_SOURCE_DIR}/platforms/linux")
+    set(INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/platforms/linux")
 elseif(CMAKE_SYSTEM_NAME MATCHES "Darwin")
-    set(INCLUDE_DIR "${CMAKE_SOURCE_DIR}/platforms/darwin")
+    set(INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/platforms/darwin")
 elseif(CMAKE_SYSTEM_NAME MATCHES "Windows")
     if(MSVC)
     elseif(MSYS)
     else()
-        set(INCLUDE_DIR "${CMAKE_SOURCE_DIR}/platforms/mingw")
+        set(INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/platforms/mingw")
     endif()
 else()
     message(FATAL_ERROR "Unrecognized configuration, please download IConv from GNU at https://www.gnu.org/software/libiconv, run ./configure and send libs/config.h to ahuszagh(at)gmail(.)com")
@@ -82,8 +82,8 @@ endif()
 # ---------
 
 include_directories(
-    "${CMAKE_SOURCE_DIR}/lib"
-    "${CMAKE_SOURCE_DIR}/include"
+    "${CMAKE_CURRENT_SOURCE_DIR}/lib"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include"
     "${INCLUDE_DIR}"
 )
 
