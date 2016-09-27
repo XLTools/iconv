@@ -1,4 +1,4 @@
-﻿/* Determine a canonical name for the current locale's character encoding.
+/* Determine a canonical name for the current locale's character encoding.
    Copyright (C) 2000-2003 Free Software Foundation, Inc.
    This file is part of the GNU CHARSET Library.
 
@@ -20,21 +20,23 @@
 #ifndef _LOCALCHARSET_H
 #define _LOCALCHARSET_H
 
-///////////////////////// 삭제 / DELETE / УДАЛИТЬ ///////////////////////
-//#if @HAVE_VISIBILITY@ && BUILDING_LIBCHARSET
-//#define LIBCHARSET_DLL_EXPORTED __attribute__((__visibility__("default")))
-//#else
-//#define LIBCHARSET_DLL_EXPORTED
-//#endif
-///////////////////////// 추가 / ADD / ДОВАВЛЯТЬ //////////////////////
-#ifdef BUILDING_LIBCHARSET
-#define LIBCHARSET_DLL_EXPORTED __declspec(dllexport)
-#elif USING_STATIC_LIBICONV
-#define LIBCHARSET_DLL_EXPORTED
+#ifndef _MSVC
+   // HIDE ON MSVC
+   #if 1 && BUILDING_LIBCHARSET
+   #define LIBCHARSET_DLL_EXPORTED __attribute__((__visibility__("default")))
+   #else
+   #define LIBCHARSET_DLL_EXPORTED
+   #endif
 #else
-#define LIBCHARSET_DLL_EXPORTED __declspec(dllimport)
+   // OTHER BUILDS
+   #ifdef BUILDING_LIBCHARSET
+   #define LIBCHARSET_DLL_EXPORTED __declspec(dllexport)
+   #elif USING_STATIC_LIBICONV
+   #define LIBCHARSET_DLL_EXPORTED
+   #else
+   #define LIBCHARSET_DLL_EXPORTED __declspec(dllimport)
+   #endif
 #endif
-////////////////////////////////////////////////////////////////////////////////
 
 
 #ifdef __cplusplus
