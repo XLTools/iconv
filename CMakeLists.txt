@@ -10,6 +10,14 @@ project(IConv C)
 set(${PROJECT}_VERSION_MAJOR 1)
 set(${PROJECT}_VERSION_MINOR 14)
 
+# ARGUMENTS
+# ---------
+
+if (NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Debug)
+endif()
+option(BUILD_STATIC "Build static or shared library" ON)
+
 # ARCHITECTURES
 # -------------
 
@@ -27,14 +35,51 @@ else()
     message(FATAL_ERROR "Unrecognized configuration, please download IConv from GNU at https://www.gnu.org/software/libiconv, run ./configure and send libs/config.h to ahuszagh(at)gmail(.)com")
 endif()
 
+# DEFINITIONS
+# -----------
 
-# CMAKE_SYSTEM_NAME
-# CMAKE_HOST_SYSTEM
+add_definitions(
+    -DBUILDING_LIBCHARSET
+    -DBUILDING_DLL
+    -DENABLE_RELOCATABLE=1
+    -DIN_LIBRARY
+    -DNO_XMALLOC
+    -Dset_relocation_prefix=libcharset_set_relocation_prefix
+    -Drelocate=libcharset_relocate
+    -DHAVE_CONFIG_H
+)
 
-# gcc -Ilinux -Iinclude -fvisibility=hidden -DBUILDING_LIBCHARSET -DBUILDING_DLL -DENABLE_RELOCATABLE=1 -DIN_LIBRARY -DNO_XMALLOC -Dset_relocation_prefix=libcharset_set_relocation_prefix -Drelocate=libcharset_relocate -DHAVE_CONFIG_H -c lib/localcharset.c -o build/localcharset.o
+set(CMAKE_C_VISIBILITY_PRESET hidden)
+if(UNIX)
+    set(POSITION_INDEPENDENT_CODE TRUE)
+endif()
 
-# gcc -Ilinux -Iinclude -fvisibility=hidden -DBUILDING_LIBCHARSET -DBUILDING_DLL -DENABLE_RELOCATABLE=1 -DIN_LIBRARY -DNO_XMALLOC -Dset_relocation_prefix=libcharset_set_relocation_prefix -Drelocate=libcharset_relocate -DHAVE_CONFIG_H -c lib/relocatable.c -o build/relocatable.o
+# INCLUDES
+# ---------
 
-# gcc -Ilib -Ilinux -Iinclude -fvisibility=hidden -DBUILDING_LIBICONV -DBUILDING_DLL -DENABLE_RELOCATABLE=1 -DIN_LIBRARY -DNO_XMALLOC -Dset_relocation_prefix=libiconv_set_relocation_prefix -Drelocate=libiconv_relocate -DHAVE_CONFIG_H -c lib/iconv.c -o build/iconv.o
+include_directories(
+    "${CMAKE_SOURCE_DIR}/lib"
+    "${CMAKE_SOURCE_DIR}/include"
+    "${INCLUDE_DIR}"
+)
 
-# ar rvs build/libiconv.a build/*.o
+# TARGETS
+# -------
+
+set(ICONV_SOURCES
+    lib/iconv.c
+    lib/localcharset.c
+    lib/relocatable.c
+)
+
+if(BUILD_STATIC)
+    add_library(iconv
+        STATIC
+        ${ICONV_SOURCES}
+    )
+else()
+    add_library(iconv
+        SHARED
+        ${ICONV_SOURCES}
+    )
+endif()
