@@ -73,13 +73,13 @@
 # define relocate(pathname) (pathname)
 #endif
 
-// HIDE ON MSVC
-#ifndef _MSVC
-  /* Get LIBDIR.  */
-  #ifndef LIBDIR
-  # include "configmake.h"
-  #endif
-#endif
+//// HIDE ON MSVC
+//#ifndef _MSVC
+//  /* Get LIBDIR.  */
+//  #ifndef LIBDIR
+//  # include "configmake.h"
+//  #endif
+//#endif
 
 /* Define O_NOFOLLOW to 0 on platforms where it does not exist.  */
 #ifndef O_NOFOLLOW
@@ -135,8 +135,6 @@ get_charset_aliases (void)
       /* Make it possible to override the charset.alias location.  This is
          necessary for running the testsuite before "make install".  */
       dir = getenv ("CHARSETALIASDIR");
-      if (dir == NULL || dir[0] == '\0')
-        dir = relocate (LIBDIR);
 
       /* Concatenate dir and base into freshly allocated file_name.  */
       {

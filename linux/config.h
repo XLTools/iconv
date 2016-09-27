@@ -684,7 +684,7 @@
 /* #undef HAVE__NSGETEXECUTABLEPATH */
 
 /* Define as const if the declaration of iconv() needs const. */
-#define ICONV_CONST 
+#define ICONV_CONST
 
 /* Define to the value of ${prefix}, as a string. */
 #define INSTALLPREFIX "/usr/local"
@@ -769,7 +769,7 @@
 
 /* Define to the prefix of C symbols at the assembler and linker level, either
    an underscore or empty. */
-#define USER_LABEL_PREFIX 
+#define USER_LABEL_PREFIX
 
 /* Define to 1 if you want getc etc. to use unlocked I/O if available.
    Unlocked I/O can improve performance in unithreaded apps, but it is not
@@ -778,6 +778,10 @@
 
 /* Version number of package */
 #define VERSION "1.14"
+
+/* Pre-defined Macros */
+#define USE_MBSTATE_T 1
+#define BROKEN_WCHAR_H 0
 
 /* Define to l, ll, u, ul, ull, etc., as suitable for constants of type
    'wchar_t'. */
