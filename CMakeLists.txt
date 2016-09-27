@@ -17,6 +17,7 @@ if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug)
 endif()
 option(BUILD_STATIC "Build static or shared library" ON)
+option(BUILD_TESTS "Build tests" OFF)
 
 # ARCHITECTURES
 # -------------
@@ -81,5 +82,16 @@ else()
     add_library(iconv
         SHARED
         ${ICONV_SOURCES}
+    )
+endif()
+
+if(BUILD_TESTS)
+    # BUILD TESTS
+
+    add_executable(tests
+        tests/test.c
+    )
+    target_link_libraries(tests
+        iconv
     )
 endif()
