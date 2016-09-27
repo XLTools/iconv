@@ -6,5 +6,5 @@ Specific blocks dependent on the `_MSVC` macro have been defined thanks to Young
 The rest of the library has pre-built `config.h` headers from test build systems (CentOS 5, MSYS2, and various cross-compilers).
 
 The library has been tested with the following build chains and systems:
-    - Centos 5
-    - Ubuntu 16.04
+- Centos 5 (Static Only)
+- Ubuntu 16.04 (Static Only)
