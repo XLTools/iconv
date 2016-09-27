@@ -111,10 +111,10 @@ endif()
 if(BUILD_TESTS)
     # BUILD TESTS
 
-    add_executable(tests
+    add_executable(IConvTests
         tests/test.c
     )
-    target_link_libraries(tests
+    target_link_libraries(IConvTests
         iconv
     )
 endif()
