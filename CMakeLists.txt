@@ -55,6 +55,24 @@ if(UNIX)
     set(POSITION_INDEPENDENT_CODE TRUE)
 endif()
 
+if(BUILD_STATIC)
+    # STATIC
+    add_definitions(
+        -DUSING_STATIC_LIBICONV
+    )
+    remove_definitions(
+        -DBUILDING_LIBICONV
+    )
+else()
+    # SHARED
+    add_definitions(
+        -DBUILDING_LIBICONV
+    )
+    remove_definitions(
+        -DUSING_STATIC_LIBICONV
+    )
+endif()
+
 # INCLUDES
 # ---------
 
