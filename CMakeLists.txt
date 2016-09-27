@@ -36,6 +36,16 @@ else()
     message(FATAL_ERROR "Unrecognized configuration, please download IConv from GNU at https://www.gnu.org/software/libiconv, run ./configure and send libs/config.h to ahuszagh(at)gmail(.)com")
 endif()
 
+# STANDARDS
+# ---------
+
+# Various patches, see: https://lists.freebsd.org/pipermail/freebsd-stable/2014-February/077408.html
+set(CMAKE_C_VISIBILITY_PRESET hidden)
+set(CMAKE_C_STANDARD 90)
+if(UNIX)
+    set(POSITION_INDEPENDENT_CODE TRUE)
+endif()
+
 # DEFINITIONS
 # -----------
 
@@ -49,11 +59,6 @@ add_definitions(
     -Drelocate=libcharset_relocate
     -DHAVE_CONFIG_H
 )
-
-set(CMAKE_C_VISIBILITY_PRESET hidden)
-if(UNIX)
-    set(POSITION_INDEPENDENT_CODE TRUE)
-endif()
 
 if(BUILD_STATIC)
     # STATIC
