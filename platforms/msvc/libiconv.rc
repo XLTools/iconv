@@ -1,11 +1,9 @@
 /* Resources for iconv.dll */
 
-#ifdef _MSC_VER
-    #define PACKAGE_VERSION_MAJOR       1
-    #define PACKAGE_VERSION_MINOR       14
-    #define PACKAGE_VERSION_SUBMINOR    0
-    #define PACKAGE_VERSION_STRING      "1.14"
-#endif
+#define PACKAGE_VERSION_MAJOR       1
+#define PACKAGE_VERSION_MINOR       14
+#define PACKAGE_VERSION_SUBMINOR    0
+#define PACKAGE_VERSION_STRING      "1.14"
 
 #include <winver.h>
 
