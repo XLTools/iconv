@@ -28,6 +28,7 @@ elseif(CMAKE_SYSTEM_NAME MATCHES "Darwin")
     set(INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/platforms/darwin")
 elseif(CMAKE_SYSTEM_NAME MATCHES "Windows")
     if(MSVC)
+        set(INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/platforms/msvc")
     elseif(MSYS)
         set(INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/platforms/msys")
     else()
@@ -96,6 +97,10 @@ set(ICONV_SOURCES
     lib/localcharset.c
     lib/relocatable.c
 )
+
+if(MSVC)
+    list(APPEND ICONV_SOURCES platforms/msvc/libiconv.rc)
+endif()
 
 if(BUILD_STATIC)
     add_library(iconv
