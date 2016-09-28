@@ -52,15 +52,24 @@ endif()
 # -----------
 
 add_definitions(
-    -DBUILDING_LIBCHARSET
-    -DBUILDING_DLL
-    -DENABLE_RELOCATABLE=1
-    -DIN_LIBRARY
-    -DNO_XMALLOC
-    -Dset_relocation_prefix=libcharset_set_relocation_prefix
-    -Drelocate=libcharset_relocate
-    -DHAVE_CONFIG_H
 )
+
+if(MSVC)
+    add_definitions(
+        -D_WINDOWS
+    )
+else()
+    add_definitions(
+        -DIN_LIBRARY
+        -DNO_XMALLOC
+        -Dset_relocation_prefix=libcharset_set_relocation_prefix
+        -Drelocate=libcharset_relocate
+        -DBUILDING_DLL
+        -DENABLE_RELOCATABLE=1
+        -DHAVE_CONFIG_H
+        -DBUILDING_LIBCHARSET
+    )
+endif()
 
 if(BUILD_STATIC)
     # STATIC
@@ -70,6 +79,11 @@ if(BUILD_STATIC)
     remove_definitions(
         -DBUILDING_LIBICONV
     )
+    if(MSVC)
+        add_definitions(
+            -D_LIB
+        )
+    endif()
 else()
     # SHARED
     add_definitions(
@@ -78,6 +92,13 @@ else()
     remove_definitions(
         -DUSING_STATIC_LIBICONV
     )
+    if(MSVC)
+        add_definitions(
+            -D_USRDLL
+            -DLIBICONV_EXPORTS
+            -DBUILDING_LIBCHARSET
+        )
+    endif()
 endif()
 
 # INCLUDES
