@@ -1,6 +1,6 @@
 /* Resources for iconv.dll */
 
-#ifdef _MSVC
+#ifdef _MSC_VER
     #define PACKAGE_VERSION_MAJOR       1
     #define PACKAGE_VERSION_MINOR       14
     #define PACKAGE_VERSION_SUBMINOR    0

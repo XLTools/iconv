@@ -26,7 +26,7 @@
 /* Define to 1 if // is a file system root distinct from /. */
 #undef DOUBLE_SLASH_IS_DISTINCT_ROOT
 
-#ifndef _MSVC
+#ifndef _MSC_VER
    /* Define as good substitute value for EILSEQ. */
    #undef EILSEQ
 #endif

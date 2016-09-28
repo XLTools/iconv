@@ -27,7 +27,7 @@
   #define HAVE_VISIBILITY 1
 #endif
 
-#ifndef _MSVC
+#ifndef _MSC_VER
   #if HAVE_VISIBILITY && BUILDING_LIBICONV
   #define LIBICONV_DLL_EXPORTED __attribute__((__visibility__("default")))
   #else
@@ -119,7 +119,7 @@ extern LIBICONV_DLL_EXPORTED int iconv_close (iconv_t cd);
 
 /* Nonstandard extensions. */
 
-#ifdef _MSVC
+#ifdef _MSC_VER
 #elif __MINGW32__
 #elif __APPLE__
 #elif __linux__
@@ -197,7 +197,7 @@ typedef void (*iconv_unicode_uc_to_mb_fallback)
               void* callback_arg,
               void* data);
 
-#ifdef _MSVC
+#ifdef _MSC_VER
 #elif __MINGW32__
 #elif __APPLE__
 #elif __linux__

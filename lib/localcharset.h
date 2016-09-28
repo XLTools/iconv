@@ -20,7 +20,7 @@
 #ifndef _LOCALCHARSET_H
 #define _LOCALCHARSET_H
 
-#ifndef _MSVC
+#ifndef _MSC_VER
    // HIDE ON MSVC
    #if 1 && BUILDING_LIBCHARSET
    #define LIBCHARSET_DLL_EXPORTED __attribute__((__visibility__("default")))

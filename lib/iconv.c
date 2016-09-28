@@ -243,7 +243,7 @@ invalid:
   return (iconv_t)(-1);
 }
 
-#ifndef _MSVC
+#ifndef _MSC_VER
   size_t iconv (iconv_t icd,
                 ICONV_CONST char* * inbuf, size_t *inbytesleft,
                 char* * outbuf, size_t *outbytesleft)
