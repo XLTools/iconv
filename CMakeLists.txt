@@ -48,6 +48,13 @@ if(UNIX)
     set(POSITION_INDEPENDENT_CODE TRUE)
 endif()
 
+# WARNINGS
+# --------
+
+if(MSYS)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast -Wno-attributes -Wno-write-strings")
+endif()
+
 # DEFINITIONS
 # -----------
 
